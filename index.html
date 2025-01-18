@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Web</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/background/20230519/original/pngtree-store-full-of-in-a-dark-room-picture-image_2654942.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+        }
+        h1 {
+            color: green;
+            text-align: center;
+            font-size: 30px;
+        }
+        #grid {
+            background-color: black;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0px;
+            padding: 10px;
+        }
+        .grid-item {
+            position: relative;
+        }
+        .grid-item a {
+            text-decoration: none;
+            color: white;
+            background-color: green;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .grid-item a:hover {
+            background-color: #3a9f3a;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            top: 50px;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+        .dropdown-content p {
+            margin: 5px 0;
+            color: white;
+        }
+        .dropdown-content a {
+            color: white;
+        }
+        .dropdown-content a:hover {
+            color: green;
+        }
+        form {
+            text-align: left;
+            width: 20%;
+            height: 65vh;
+            padding: 5px;
+            border: 1px solid white;
+            color: white;
+        }
+        form label, form input, form select {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="grid">
+        <div class="grid-item" id="home-item">
+            <a href="#home">Accueil</a>
+            <div class="dropdown-content">
+                <p>Bienvenue dans notre boutique en ligne !</p>
+                <p>Trouvez les meilleures offres ici.</p>
+            </div>
+        </div>
+        <div class="grid-item" id="services-item">
+            <a href="#services">Services</a>
+            <div class="dropdown-content">
+                <p>Nous offrons des services de vêtements de haute qualité.</p>
+                <p>Couture sur mesure et livraison disponibles.</p>
+            </div>
+        </div>
+        <div class="grid-item" id="cart-item">
+            <a href="#cart">Panier</a>
+            <div class="dropdown-content">
+                <p>Voir et gérer les articles dans votre panier.</p>
+                <p>Procédez facilement au paiement.</p>
+            </div>
+        </div>
+        <div class="grid-item" id="faq-item">
+            <a href="#faq">FAQ</a>
+            <div class="dropdown-content">
+                <p>Des questions ? Trouvez des réponses ici.</p>
+                <p>Contactez le support pour plus d'assistance.</p>
+            </div>
+        </div>
+        <div class="grid-item" id="contact-item">
+            <a href="#contact">Contactez-nous</a>
+            <div class="dropdown-content">
+                <p>Téléphone : +123 456 789</p>
+                <p>Facebook : <a href="#" target="_blank">Page Facebook</a></p>
+                <p>Instagram : <a href="#" target="_blank">Page Instagram</a></p>
+            </div>
+        </div>
+    </div>
+    <h1><strong>Boutique en ligne de vêtements !</strong></h1>
+    <h1><strong>Achetez maintenant !</strong></h1>
+    <form id="userForm">  
+        <label for="name">Nom</label>
+        <input type="text" id="name" placeholder="Entrez votre nom" required>
+        <br>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Adresse email" required>
+        <br>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" placeholder="Mot de passe" required>
+        <br>
+        <label for="date">Date</label>
+        <input type="date" id="date" required>
+        <br>
+        <label for="gender">Sexe</label>
+        <select id="gender">
+            <option value="male">Homme</option>
+            <option value="female">Femme</option>
+        </select>
+        <br>
+        <button type="submit">Envoyer</button>
+        <br>
+    </form>     
+
+    <script>
+        const form = document.getElementById('userForm');
+        const dropdownItems = document.querySelectorAll('.grid-item');
+
+        // Gestion de l'envoi du formulaire
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const gender = document.getElementById('gender').value;
+
+            alert(`Soumission reçue :\nNom : ${name}\nEmail : ${email}\nDate : ${date}\nSexe : ${gender}`);
+        });
+
+        // Basculement de la visibilité des menus déroulants
+        dropdownItems.forEach(item => {
+            const dropdown = item.querySelector('.dropdown-content');
+            item.addEventListener('click', (event) => {
+                event.stopPropagation();
+                dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' 
+                    ? 'block' 
+                    : 'none';
+            });
+        });
+
+        // Cacher les menus déroulants en cliquant ailleurs
+        document.addEventListener('click', () => {
+            dropdownItems.forEach(item => {
+                const dropdown = item.querySelector('.dropdown-content');
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+    
